@@ -17,3 +17,7 @@ def index(request):
 
 def ask(request):
      return render(request, "ask.html")
+
+
+def question(request, i: int):
+     return render(request, "question_page.html", {"question": QUESTIONS[i]})
