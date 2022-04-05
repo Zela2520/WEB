@@ -71,12 +71,13 @@
 <main class="flex-shrink-0">
     <div class="container">
         <div class="row">
+
             <div class="col-9">
                 <h2 class="mt-5">Questions</h2>
 
-                {% include "inc/question.html" %}
-                {% include "inc/question.html" %}
-                {% include "inc/question.html" %}
+                {% for question in questions %}
+                    {% include "inc/question.html" %}
+                {% endfor %}
 
             </div>
             <div class="col-3">
