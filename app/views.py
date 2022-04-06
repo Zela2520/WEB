@@ -4,6 +4,7 @@ QUESTIONS = [
      {
           "title": f"Title #{i}",
           "text": f"This is the text for question #{i}",
+          "number": i,
      } for i in range(10)
 ]
 
