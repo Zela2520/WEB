@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-# Список словарей
 QUESTIONS = [
      {
           "title": f"Title #{i}",
