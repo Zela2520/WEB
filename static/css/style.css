@@ -1,0 +1,29 @@
+main > .container {
+  padding: 60px 15px 0;
+}
+
+body {
+    background-color: #187e80;
+}
+
+.question {
+    border: 10px solid dark;
+    background-color: #f2f3ff;
+    border-radius: 20px;
+    margin: 20px -2px;
+    padding: 10px;
+}
+
+.avatar-question {
+    width: 150px;
+    height: 150px;
+}
+
+#popular_tags {
+    margin-left: 70px;
+}
+
+.tags_string {
+    text-align: center;
+    margin-left: 60px;
+}
