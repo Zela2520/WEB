@@ -19,15 +19,9 @@ body {
     height: 150px;
 }
 
-#popular_tags {
-    margin-left: 70px;
-}
-
-#best_members {
-    text-align: center;
-}
-
-.tags_string {
-    text-align: center;
-    margin-left: 60px;
+.my_border {
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 20px;
+    background-color: #9066bd
 }

@@ -2,23 +2,24 @@
 {% load static %}
 
 {% block content %}
-    <h2 class="mt-4">Questions</h2>
-    {% for question in questions %}
+    <h2 class="mt-4 my_border text-center pb-2 pt-2">Questions</h2>
+    {% for question in index_content.0 %}
         {% include "inc/question.html" %}
     {% endfor %}
 {% endblock %}
 
 {% block side_panel %}
-<div class="container-fluid">
-    <div id="popular_tags" class="d-flex flex-row mt-4">
-        <h2>Popular Tags</h2>
+<div class="container-fluid offset-md-1">
+    <div class="d-flex flex-row mt-4 ">
+        <h2 class = "col-md-12 offset-md-2 my_border w-80 text-center pb-2 pt-2">Popular Tags</h2>
     </div>
-    {% include "tags.html" %}
-    {% include "tags.html" %}
-    {% include "tags.html" %}
 
-    <div class="d-flex flex-row ">
-        <h2 class = "col-md-12 offset-md-3">Best members</h2>
+    {% for tag in index_content.1 %}
+        {% include "inc/tags.html" %}
+    {% endfor %}
+
+    <div class="d-flex flex-row">
+        <h2 class = "col-md-12 offset-md-2 my_border w-80 text-center pb-2 pt-2">Best members</h2>
     </div>
 </div>
 {% endblock %}
