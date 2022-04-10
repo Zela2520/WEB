@@ -14,7 +14,11 @@ third_row = {"1": "QT", "2": "Ruby", "3": "Java"}
 
 TAGS = [first_row, second_row, third_row]
 
-INDEX_CONTENT = [QUESTIONS, TAGS]
+names = {"1": "C/C++", "2": "Python", "3": "SQL"}
+
+MEMBERS = ["Mr.Freeman", "Dr.House", "Bender", "Queen Victoria", "V.Pupkin"]
+
+INDEX_CONTENT = [QUESTIONS, TAGS, MEMBERS]
 
 # Create your views here.
 

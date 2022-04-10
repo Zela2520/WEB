@@ -23,5 +23,37 @@ body {
     border: 2rem solid white;
     border-width: 3px;
     border-radius: 20px;
-    background-color: #9066bd
+    background-color: #948f8f;
+}
+
+#member {
+    text-align:center;
+}
+
+#my_button {
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 20px;
+    background-color: #3b0c0c;
+}
+
+#my_button1 {
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 20px;
+    background-color: #3b0c0c;
+}
+
+#my_button2 {
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 20px;
+    background-color: #3b0c0c;
+}
+
+#my_button3 {
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 20px;
+    background-color: #3b0c0c;
 }
