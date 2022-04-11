@@ -2,11 +2,32 @@
 
 <div class="mt-4 pt-1 d-flex flex-row question">
     <div class="col-2">
-        <img class="avatar-question" src="{% static "img/question.png" %}", alt=""}>
+        <div class="d-flex flex-row">
+            <img class="avatar-question" src="{% static "img/question.png" %}", alt="">
+        </div>
+        <div class="mt-1 pt-1 d-flex flex-row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <button type="button" class="btn btn-md btn-outline-success"><b>🤩</b>&nbsp; 20</button>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <button type="button" class="btn btn-md btn-outline-danger"><b>❤</b>&nbsp; 15</button>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <button type="button" class="btn btn-md btn-outline-warning"><b>🤡</b>&nbsp; 5</button>
+            </div>
+        </div>
+        <div class="d-flex flex-row text-left">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <a href="#" style="color:black"><button type="button" class="btn btn-md btn-outline-link"><b>⚡</b>&nbsp;answers </button></a>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <a href="#" style="color:black"><button type="button" class="btn btn-md btn-outline-link"><b>⚡</b>&nbsp;answers </button></a>
+            </div>
+        </div>
     </div>
 
-    <div class="col-10">
-        <h3><a href="{% url 'question' question.number %}">{{ question.title }}</a></h3>
+    <div class="m-2 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+        <h3><a href="{% url 'question' question.number %}" style="color:black">{{ question.title }}</a></h3>
         <p>{{ question.text }}</p>
     </div>
 </div>
