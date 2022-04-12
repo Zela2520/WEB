@@ -1,10 +1,21 @@
 {% extends "inc/base.html" %}
 
 {% block content %}
-    <h2 class="mt-4 my_border text-center pb-2 pt-2">Questions</h2>
+    <h2 class="mt-4 my_border pb-2 pt-2">Questions</h2>
     {% for question in index_content.0 %}
         {% include "inc/question.html" %}
     {% endfor %}
+    <div class="container">
+          <div class="d-flex flex-row paginator mt-4">
+            <div class="btn btn-outline-dark">1</div>
+            <a class="btn btn-outline-dark" href="/<link>" rel="" title="Go to page 2">2</a>
+            <a class="btn btn-outline-dark" href="/<link>" rel="" title="Go to page 3">3</a>
+            <a class="btn btn-outline-dark" href="/<link>" rel="" title="Go to page 4">4</a>
+            <span class="fs-2"> ...</span>
+            <a class="btn btn-outline-dark" href="/<link>" rel="" title="Go to page 50703">555</a>
+            <a class="btn btn-outline-dark" href="/<link>" rel="next" title="Go to page 2"> Next</a>
+          </div>
+    </div>
 {% endblock %}
 
 {% block side_panel %}
@@ -25,5 +36,7 @@
         {% include "inc/members.html" %}
     {% endfor %}
 
+
 </div>
 {% endblock %}
+

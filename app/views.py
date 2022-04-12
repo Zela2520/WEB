@@ -18,17 +18,17 @@ names = {"1": "C/C++", "2": "Python", "3": "SQL"}
 
 MEMBERS = ["Mr.Freeman", "Dr.House", "Bender", "Queen Victoria", "V.Pupkin"]
 
-INDEX_CONTENT = [QUESTIONS, TAGS, MEMBERS]
+CONTENT = [QUESTIONS, TAGS, MEMBERS]
 
 # Create your views here.
 
 
 def index(request):
-     return render(request, "index.html", {"index_content": INDEX_CONTENT})
+     return render(request, "index.html", {"index_content": CONTENT})
 
 
 def ask(request):
-     return render(request, "ask.html")
+     return render(request, "ask.html", {"index_content": CONTENT})
 
 
 def question(request, i: int):
