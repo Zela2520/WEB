@@ -25,7 +25,7 @@ body {
     border: 2rem solid white;
     border-width: 3px;
     border-radius: 20px;
-    background-color: #948f8f;
+    background-color: #663650;
 }
 
 #member {
@@ -97,8 +97,9 @@ body {
 .paginator {
     width: 300px;
     border: 10px solid dark;
-    background-color: #663650;
+    background-color: #948f8f;
     border-radius: 10px;
     margin-top: -50px;
+    margin-bottom: 10px;
     padding: 10px;
 }
