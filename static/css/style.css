@@ -28,26 +28,6 @@ body {
     background-color: #948f8f;
 }
 
-.btn-circle {
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    text-align: center;
-    margin-left: 20px;
-    outline: 0 !important;
-}
-
-.like {
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    margin-left: -18px;
-    margin-top: -10px;
-    font-size: 16px;
-    display: inline-block;
-    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
-}
-
 #member {
     text-align:center;
 }
@@ -78,4 +58,47 @@ body {
     border-width: 3px;
     border-radius: 20px;
     background-color: #3b0c0c;
+}
+
+#my_button4 {
+    width: 80px;
+    height: 80px;
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 20px;
+    text-align:center;
+    background-color: #3b0c0c;
+}
+
+#my_button5 {
+    width: 80px;
+    height: 80px;
+    border: 2rem solid white;
+    text-align:center;
+    border-width: 3px;
+    border-radius: 20px;
+    text-align:center;
+    background-color: #3b0c0c;
+}
+
+.offset_inner {
+    margin-left: -2px;
+}
+
+.center {
+    text-align: center;
+}
+
+#line {
+    width: 1px;
+    height: 1px;
+}
+
+.paginator {
+    width:300px;
+    border: 10px solid dark;
+    background-color: #663650;
+    border-radius: 10px;
+    margin-top: -50px;
+    padding: 10px;
 }
