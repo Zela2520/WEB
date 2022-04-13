@@ -16,8 +16,6 @@ third_row = {"1": "QT", "2": "Ruby", "3": "Java"}
 
 TAGS = [first_row, second_row, third_row]
 
-names = {"1": "C/C++", "2": "Python", "3": "SQL"}
-
 MEMBERS = ["Mr.Freeman", "Dr.House", "Bender", "Queen Victoria", "V.Pupkin"]
 
 CONTENT = [QUESTIONS, TAGS, MEMBERS]
@@ -50,4 +48,4 @@ def tag_listing(request):
 
 
 def question(request, i: int):
-     return render(request, "question_page.html", {"question": QUESTIONS[i]})
+     return render(request, "question_page.html", {"question": QUESTIONS[i], "index_content": CONTENT})
