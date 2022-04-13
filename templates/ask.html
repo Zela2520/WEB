@@ -1,4 +1,10 @@
 {% extends "inc/base.html" %}
+{% load static %}
+
+{% block forms %}
+     <a class="m-1" href="{% url "settings" %}"><img class="user-avatar" src="img/kot.png"></a>
+{% endblock %}
+
 
 {% block content %}
     <h2 class="mt-4 my_border text-left pb-2 pt-2">New Question</h2>

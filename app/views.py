@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+# General information
+
 QUESTIONS = [
      {
           "title": f"Question {i + 1}",
@@ -29,6 +31,22 @@ def index(request):
 
 def ask(request):
      return render(request, "ask.html", {"index_content": CONTENT})
+
+
+def login(request):
+     return render(request, "login.html", {"index_content": CONTENT})
+
+
+def registration(request):
+     return render(request, "registration.html", {"index_content": CONTENT})
+
+
+def settings(request):
+     return render(request, "settings.html", {"index_content": CONTENT})
+
+
+def tag_listing(request):
+     return render(request, "tag_listing.html", {"index_content": CONTENT})
 
 
 def question(request, i: int):

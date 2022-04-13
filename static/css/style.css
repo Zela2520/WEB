@@ -29,9 +29,13 @@ body {
     padding-left:25px;
 }
 
-#my_border2 {
-    height:200px;
-    border-radius: 20px;
+.my_borders {
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 25px;
+    background-color: #663650;
+    padding:0px, 20px;
+    margin:0px, 20px;
 }
 
 #member {
@@ -112,5 +116,12 @@ body {
 
 #ask-question {
     margin-left: 500px;
-    margin-top: 100px;
+    margin-button: 100px;
+}
+
+.user-avatar {
+  width: 36.5px;
+  height: 36.5px;
+  margin: 0px, 10px;
+  border-radius: 2px;
 }
