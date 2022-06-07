@@ -47,6 +47,7 @@ body {
     border-width: 3px;
     border-radius: 20px;
     background-color: #3b0c0c;
+    margin-bottom: 20px;
 }
 
 #my_button1 {
@@ -124,4 +125,13 @@ body {
   height: 36.5px;
   margin: 0px, 10px;
   border-radius: 2px;
+}
+
+
+#best_member {
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 20px;
+    background-color: red;
+    margin-bottom: 100px;
 }

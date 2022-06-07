@@ -1,7 +1,8 @@
 {% extends "inc/base.html" %}
+{% load static %}
 
 {% block forms %}
-     <a class="m-1" href="{% url "settings" %}"><img class="user-avatar" src="img/kot.png"></a>
+     <a class="m-1" href="{% url "settings" %}"><img class="user-avatar" src="{% static "img/login.png" %}"></a>
 {% endblock %}
 
 {% block content %}
