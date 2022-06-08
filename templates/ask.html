@@ -7,7 +7,8 @@
 
 
 {% block content %}
-    <h2 class="mt-4 my_border text-left pb-2 pt-2">New Question</h2>
+<div class="container-fluid">
+    <h2 class="mt-4 text-left pb-2 pt-2">New Question</h2>
     <form>
         <div class="m-2">
             <div class="question-textarea-title">
@@ -34,10 +35,11 @@
             <button type="submit" class="btn btn-dark">Create question</button>
         </div>
     </form>
+</div>
 {% endblock %}
 
 {% block side_panel %}
-<div class="container-fluid offset-md-1">
+<div class="container-fluid mb-4 offset-md-1">
     <div class="d-flex flex-row mt-4 ">
         <h2 class = "col-md-12 offset-sm-1 my_border w-80 text-center pb-2 pt-2">Popular Tags</h2>
     </div>
