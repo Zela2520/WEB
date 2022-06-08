@@ -8,6 +8,13 @@ body {
     background-color: #187e80;
 }
 
+a {
+    color: #187e80;
+    text-decoration: none;
+}
+
+
+
 .question {
     border: 10px solid dark;
     background-color: #f2f3ff;
@@ -40,6 +47,10 @@ body {
 
 #member {
     text-align:center;
+}
+
+#side_panel {
+    position: sticky;
 }
 
 #my_button {
@@ -134,4 +145,13 @@ body {
     border-radius: 20px;
     background-color: red;
     margin-bottom: 100px;
+}
+
+.answer-best {
+    background-color:#cf0c0c;
+    border: 3px solid rgb(164, 164, 164);
+    border-radius: 5px;
+    margin: 20px;
+    padding: 10px;
+    width: 80%;
 }
