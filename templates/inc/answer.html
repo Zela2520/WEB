@@ -1,21 +1,25 @@
 {% load static %}
-<div class="row answer">
+<div class="row question">
+  <div class="d-flex flex-row m-3">
     <div class="col-2">
-      <img class="avatar-question" src="{% static "img/pepa.png" %}">
-
-
+      <div class="d-flex flex-row mt-4 justify-content-center">
+        <img class="avatar-question" src="{% static "img/pepa.png" %}">
+      </div>
     </div>
-    <div class="col-10">
-      <p class="answer-text"> <a href="{% url 'question' question.number %}" style="color:black">{{ answer_id }}</a>: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-        Ipsum has been the
-        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-        into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-        release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-        software like Aldus PageMaker including versions of Lorem Ipsum</p>
+    <div class="col-10 justify-content-center">
+      <div class="d-flex flex-row m-4">
+        <p class="answer-text"> <a href="{% url 'question' question.number %}" style="color:black">{{ answer_id }}</a>: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+          Ipsum has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+          into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+          release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+          software like Aldus PageMaker including versions of Lorem Ipsum</p>
+      </div>
     </div>
+  </div>
 
-    <div class="row">
+    <div class="d-flex flex-row">
       <div class="col-3">
         <div class="btn likes-buttons">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
@@ -39,24 +43,30 @@
           </svg>
         </div>
         <span class="text-danger">13</span>
-
       </div>
 
-      <div class="col-4 btn author-label-answer">
+      <div class="col-3 m-3">
         <span>
           <p> <b>Author:</b>&nbsp <a href="">user@mail.ru</a> </p>
         </span>
       </div>
 
-      <div class="col-5">
+      <div class="col-6 m-3">
         <div class="container">
-          <a class="btn answer-tags"> <b>Tags:</b></a>
-          <a href="" class="btn btn-link">Tag1</a>
-          <a href="" class="btn btn-link">Tag2</a>
-          <a href="" class="btn btn-link">Tag3</a>
+          <b>Tags:</b>&nbsp;
+          <a href="#">C/C++</a> &nbsp;
+          <a href="#">Python</a> &nbsp;
+          <a href="#">Java</a> &nbsp;
+          <a href="#">PHP</a> &nbsp;
+          <a href="#">JS</a> &nbsp;
+          <a href="#">Django</a> &nbsp;
         </div>
-
       </div>
-
+    </div>
+    <div class="d-flex flex-row">
+          <div class="col-12 form-check offset-md-6">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1"><b>Correct!</b></label>
+          </div>
     </div>
   </div>

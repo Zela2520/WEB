@@ -8,13 +8,6 @@ body {
     background-color: #187e80;
 }
 
-a {
-    color: #187e80;
-    text-decoration: none;
-}
-
-
-
 .question {
     border: 10px solid dark;
     background-color: #f2f3ff;
@@ -147,11 +140,28 @@ a {
     margin-bottom: 100px;
 }
 
-.answer-best {
-    background-color:#cf0c0c;
+#answer-best {
+    background-color: black;
     border: 3px solid rgb(164, 164, 164);
     border-radius: 5px;
-    margin: 20px;
-    padding: 10px;
-    width: 80%;
+}
+
+.answer-best-check {
+    margin-left: 20px;
+}
+
+.answer-text {
+   margin-left: 30px;
+}
+
+.likes-buttons {
+  margin-right: -10px;
+}
+
+.arrows {
+    margin: 50px;
+}
+
+.padding{
+  margin-left: 200px;
 }

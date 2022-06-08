@@ -69,3 +69,7 @@ def settings(request):
 
 def hot(request):
     return render(request, "hot.html", {"index_content": CONTENT})
+
+
+def tag_listing(request):
+    return render(request, "tag_listing.html", {"index_content": CONTENT})

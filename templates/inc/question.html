@@ -2,7 +2,7 @@
 
 <div class="mt-4 pt-1 d-flex flex-row question">
     <div class="col-2">
-        <div class="d-flex flex-row">
+        <div class="d-flex flex-row mt-4 justify-content-center">
             <img class="avatar-question" src="{% static "img/luffy_cadio.ong.jpeg" %}", alt="">
         </div>
         <div class="mt-1 pt-1 d-flex flex-row">
@@ -30,8 +30,8 @@
         </div>
     </div>
 
-    <div class="m-2 col-xs-10 col-sm-10 col-md-10 col-lg-10">
-        <div class = "d-flex flex-row"></div>
+    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 m-2">
+        <div class = "d-flex flex-row mt-2"></div>
         <h3><a href="{% url 'question' question.number %}" style="color:black">{{ question.title }}</a></h3>
         <p>{{ question.text }}</p>
         <div class="mt-4 pt-1 d-flex flex-row">
