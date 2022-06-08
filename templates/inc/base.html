@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="{% static "img/vkladka.png" %}">
     <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
     <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/stylehelper.css" %}">
 
     <style>
       .bd-placeholder-img {
@@ -78,7 +79,7 @@
                 {% endblock content %}
             </div>
 <!--            пытался сделать side panel sticky, но что-то не работает, потом разберусь-->
-            <div id="side_panel" class="col-3">
+            <div class="col-3">
                 {% block side_panel %}
                 {% endblock side_panel %}
             </div>
