@@ -7,34 +7,45 @@
 
 
 {% block content %}
-<div class="container-fluid">
-    <h2 class="mt-4 text-left pb-2 pt-2">New Question</h2>
-    <form>
-        <div class="m-2">
-            <div class="question-textarea-title">
-                <label for="QuestionTitle" class="form-label зl-2"><h4>Question title</h4></label>
-                <div>
-                    <input type="text" class="form-control" pattern="[A-z]{1,100}" id="QuestionTitle" aria-describedby="QuestionTitle">
+<div class="container-fluid setting-help mt-4">
+    <div class="d-flex flex-row m-2">
+        <h2 class="left-spacing-2">New Question</h2>
+    </div>
+        <form>
+                <div class="container-fluid setting-help mt-2">
+                    <div class="d-flex flex-row">
+                        <div class="col-md-2 mt-2">
+                            <label for="QuestionTitle" class="form-label"><h4>Question title</h4></label>
+                        </div>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control input-1" pattern="[A-z]{1,100}" id="QuestionTitle" aria-describedby="QuestionTitle">
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row form-text text-dark">
+                        <h6 class="left-spacing-1">Input title of your question</h6>
+                    </div>
                 </div>
-                <div class="form-text text-dark"><h6>Input title of your question</h6></div>
-            </div>
 
-            <div class="mb-3 question-textarea-text text-start">
-                <label for="exampleFormControlTextarea1" class="form-label"><h4>Question</h4></label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
+                <div class="container-fluid setting-help mt-1">
+                    <div class="mb-3 question-textarea-text text-start">
+                        <label for="exampleFormControlTextarea1" class="form-label"><h4>Question</h4></label>
+                        <textarea class="form-control input-2" placeholder="Ask your question" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </div>
 
-            <label for="QuestionTags" class="form-label"><h4>Tags</h4></label>
-            <input type="text" pattern="[A-z]{1,30}" class="form-control question-textarea-tags" id="QestionTags" aria-describedby="QestionTags">
+                <div class="container-fluid setting-help mt-1">
+                    <label for="QuestionTags" class="form-label"><h4>Tags</h4></label>
+                    <input type="text" pattern="[A-z]{1,30}" placeholder="Enter tags" class="form-control question-textarea-tags input-3" id="QestionTags" aria-describedby="QestionTags">
+                </div>
 
-            <div class="mb-2 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Notify me of responses by mail</label>
-            </div>
-
-            <button type="submit" class="btn btn-dark">Create question</button>
-        </div>
-    </form>
+                <div class="container-fluid setting-help">
+                    <div class="mb-2 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Notify me of responses by mail</label>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Create question</button>
+                </div>
+        </form>
 </div>
 {% endblock %}
 

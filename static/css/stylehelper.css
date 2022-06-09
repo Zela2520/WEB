@@ -13,36 +13,3 @@
     padding: 15px 20px 10px 10px;
 }
 
-#answer-best {
-    background-color: black;
-    border: 3px solid rgb(164, 164, 164);
-    border-radius: 5px;
-}
-
-.answer-best-check {
-    margin-left: 20px;
-}
-
-.answer-text {
-   margin-left: 30px;
-}
-
-.likes-buttons {
-  margin-right: -10px;
-}
-
-.arrows {
-    margin: 50px;
-}
-
-.padding{
-  margin-left: 200px;
-}
-
-#best_member {
-    border: 2rem solid white;
-    border-width: 3px;
-    border-radius: 20px;
-    background-color: red;
-    margin-bottom: 100px;
-}
