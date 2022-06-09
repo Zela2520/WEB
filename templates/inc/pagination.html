@@ -1,11 +1,21 @@
 {% load static %}
 <div class="container offset-sm-1 justify-content-center mt-4 mb-4">
       <div class="btn btn-dark">1</div>
-      <a class="btn btn-dark" href="{% url "question" 1 %}" rel="" title="Go to page 2">2</a>
-      <a class="btn btn-dark" href="{% url "question" 2 %}" rel="" title="Go to page 3">3</a>
-      <a class="btn btn-dark" href="{% url "question" 3 %}" rel="" title="Go to page 4">4</a>
-      <a class="btn btn-dark" href="{% url "question" 4 %}" rel="" title="Go to page 5">5</a>
-      <span class="fs-2"> ....</span>
-      <a class="btn btn-dark" href="{% url "question" 9 %}" rel="" title="Go to page 1337">1337</a>
-      <a class="btn btn-dark" href="{% url "question" 0 %}" rel="next" title="Go to page 1"> Next</a>
+      {% if cur_tag %}
+            <a class="btn btn-dark" href="{% url "tag" cur_tag %}" rel="" title="Go to page 2">2</a>
+            <a class="btn btn-dark" href="{% url "tag" cur_tag %}" rel="" title="Go to page 3">3</a>
+            <a class="btn btn-dark" href="{% url "tag" cur_tag %}" rel="" title="Go to page 4">4</a>
+            <a class="btn btn-dark" href="{% url "tag" cur_tag %}" rel="" title="Go to page 5">5</a>
+            <span class="fs-2"> ....</span>
+            <a class="btn btn-dark" href="{% url "tag" cur_tag %}" rel="" title="Go to page 1337">1337</a>
+            <a class="btn btn-dark" href="{% url "tag" cur_tag %}" rel="next" title="Go to page 1"> Next</a>
+      {% else %}
+            <a class="btn btn-dark" href="{% url "question" 1 %}" rel="" title="Go to page 2">2</a>
+            <a class="btn btn-dark" href="{% url "question" 2 %}" rel="" title="Go to page 3">3</a>
+            <a class="btn btn-dark" href="{% url "question" 3 %}" rel="" title="Go to page 4">4</a>
+            <a class="btn btn-dark" href="{% url "question" 4 %}" rel="" title="Go to page 5">5</a>
+            <span class="fs-2"> ....</span>
+            <a class="btn btn-dark" href="{% url "question" 9 %}" rel="" title="Go to page 1337">1337</a>
+            <a class="btn btn-dark" href="{% url "question" 0 %}" rel="next" title="Go to page 1"> Next</a>
+      {% endif %}
 </div>

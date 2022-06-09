@@ -6,6 +6,12 @@
     <a href= "{% url "registration" %}" class="m-1 btn btn-outline-secondary">Sign up</a>
 {% endblock %}
 
+{% block content %}
+    <h2 class="mt-4 my_border pb-2 pt-2">Tag: {{cur_tag}}</h2>
+    {% for question in index_content.0 %}
+        {% include "inc/question.html" %}
+    {% endfor %}
+{% endblock %}
 
 {% block side_panel %}
 <div class="container-fluid offset-md-1 mb-4">
@@ -26,3 +32,7 @@
     {% endfor %}
 </div>
 {% endblock %}
+
+{% block pagin %}
+        {% include "inc/pagination.html" %}
+{% endblock pagin %}

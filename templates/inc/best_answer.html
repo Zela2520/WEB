@@ -43,21 +43,24 @@
         <span class="text-danger">13</span>
       </div>
 
-      <div class="col-3 m-3">
-        <span>
-          <p> <b>Author:</b>&nbsp <a href="">user@mail.ru</a> </p>
-        </span>
-      </div>
-
-      <div class="col-6 m-3">
-        <div class="container">
-          <b>Tags:</b>&nbsp;
-          <a href="#">C/C++</a> &nbsp;
-          <a href="#">Python</a> &nbsp;
-          <a href="#">Java</a> &nbsp;
-          <a href="#">PHP</a> &nbsp;
-          <a href="#">JS</a> &nbsp;
-          <a href="#">Django</a> &nbsp;
+      <div class="col-9">
+        <div class="d-flex flex-row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><p class="mt-2"><b>Username:</b>&nbsp;<a href="#" style="color:black">@gmail.com</a></p></div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <p class="mt-2"><b>Tags:</b>&nbsp;
+                    {% if not cur_tag %}
+                        {% for tag in question_tags %}
+                            <a href="{% url "tag" tag %}" style="color:black; margin-right:10px">{{ tag }}</a>
+                        {% endfor %}
+                    {% else %}
+                        {% for tag in question_tags %}
+                            {% if cur_tag == tag %}
+                                <a href="{% url "tag" tag %}" style="color:black; margin-right:10px">{{ tag }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </p>
+            </div>
         </div>
       </div>
     </div>

@@ -3,7 +3,11 @@
 <div class="mt-4 pt-1 d-flex flex-row question">
     <div class="col-2">
         <div class="d-flex flex-row mt-4 justify-content-center">
-            <img class="avatar-question" src="{% static "img/luffy_cadio.ong.jpeg" %}", alt="">
+            {% if users.i %}
+                <img class="avatar-question" src="{% static "img/luffy_cadio.ong.jpeg" %}",, alt="">
+            {% else %}
+                <img class="avatar-question" src="{% static "img/luffy_cadio.ong.jpeg" %}", alt="">
+            {% endif %}
         </div>
         <div class="mt-1 pt-1 d-flex flex-row">
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -44,12 +48,17 @@
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><p class="mt-4"><b>Username:</b>&nbsp;<a href="#" style="color:black">@gmail.com</a></p></div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <p class="mt-4"><b>Tags:</b>&nbsp;
-                    <a href="#" style="color:black">C/C++</a> &nbsp;
-                    <a href="#" style="color:black">Python</a> &nbsp;
-                    <a href="#" style="color:black">Java</a> &nbsp;
-                    <a href="#" style="color:black">PHP</a> &nbsp;
-                    <a href="#" style="color:black">JS</a> &nbsp;
-                    <a href="#" style="color:black">Django</a> &nbsp;
+                    {% if not cur_tag %}
+                        {% for tag in question_tags %}
+                            <a href="{% url "tag" tag %}" style="color:black; margin-right:10px">{{ tag }}</a>
+                        {% endfor %}
+                    {% else %}
+                        {% for tag in question_tags %}
+                            {% if cur_tag == tag %}
+                                <a href="{% url "tag" tag %}" style="color:black; margin-right:10px">{{ tag }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </p>
             </div>
         </div>
