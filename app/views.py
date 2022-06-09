@@ -87,3 +87,7 @@ def hot(request):
 
 def tag_listing(request, tag: str):
     return render(request, "tag_listing.html", {"index_content": CONTENT, "cur_tag": tag, "question_tags": QUESTIONS_TAGS})
+
+
+def paginate(request, object_list, per_page=10):
+    return page
