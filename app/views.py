@@ -35,9 +35,9 @@ def get_array_value(i: int, some_list):
     return str(res)
 
 
-def get_picture(i: int, some_list):
-    res = "{% static" + get_array_value(i, some_list) + " %}"
-    return res
+# def get_counter(counter: int):
+#     counter = counter + 1
+#     return counter
 
 # картинки я хотел добавить к тайтлу вопроса, чтобы у каждого вопроса была своя картинка
 USERS = ["img/balotelli.png",
@@ -56,13 +56,14 @@ USERS = ["img/balotelli.png",
 
 
 def index(request):
-     return render(request, "index.html", {"index_content": CONTENT, "users": USERS, "question_tags": QUESTIONS_TAGS})
+    i = 0
+    return render(request, "index.html", {"index_content": CONTENT, "users": USERS, "question_tags": QUESTIONS_TAGS, "get_picture": get_array_value(i, USERS)})
 
 
 def question(request, i: int):
     return render(request, "question_page.html", {"question": QUESTIONS[i], "iterator": i, "index_content": CONTENT,
                                                   "answer_id": get_sum_str(1, QUESTIONS[i].get('number', 0)),
-                                                  "get_picture": get_picture(i, USERS), "question_tags": QUESTIONS_TAGS})
+                                                  "get_picture": get_array_value(i, USERS), "question_tags": QUESTIONS_TAGS})
 
 
 def ask(request):
@@ -82,11 +83,15 @@ def settings(request):
 
 
 def hot(request):
-    return render(request, "hot.html", {"index_content": CONTENT, "question_tags": QUESTIONS_TAGS})
+    i = 0
+    return render(request, "hot.html", {"index_content": CONTENT, "question_tags": QUESTIONS_TAGS,
+                                        "get_picture": get_array_value(i, USERS)})
 
 
 def tag_listing(request, tag: str):
-    return render(request, "tag_listing.html", {"index_content": CONTENT, "cur_tag": tag, "question_tags": QUESTIONS_TAGS})
+    i = 0
+    return render(request, "tag_listing.html", {"index_content": CONTENT, "cur_tag": tag, "question_tags": QUESTIONS_TAGS,
+                                                "get_picture": get_array_value(i, USERS)})
 
 
 def paginate(request, object_list, per_page=10):

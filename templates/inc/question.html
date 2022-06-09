@@ -3,11 +3,7 @@
 <div class="mt-4 pt-1 d-flex flex-row question">
     <div class="col-2">
         <div class="d-flex flex-row mt-4 justify-content-center">
-            {% if users.i %}
-                <img class="avatar-question" src="{% static "img/luffy_cadio.ong.jpeg" %}",, alt="">
-            {% else %}
-                <img class="avatar-question" src="{% static "img/luffy_cadio.ong.jpeg" %}", alt="">
-            {% endif %}
+            <img class="avatar-question" src="{% static get_picture %}", alt="">
         </div>
         <div class="mt-1 pt-1 d-flex flex-row">
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
