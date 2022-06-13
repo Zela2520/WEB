@@ -1,0 +1,46 @@
+{% extends "inc/base.html" %}
+{% load static %}
+
+{% block forms %}
+    <a href= "{% url "login" %}" class="m-1 btn btn-outline-secondary log-in-btn">Log in</a>
+    <a href= "{% url "registration" %}" class="m-1 btn btn-outline-secondary">Sign up</a>
+{% endblock %}
+
+{% block content %}
+    <div class="container-flex">
+        <form>
+            <div class="d-row flex-row mt-5">
+                <h1 class="h3 mb-3 fw-normal text-center">Please log in</h1>
+            </div>
+            <div class="d-row flex-row mt-3 question">
+                <div class="form-floating log-in-field">
+                    <input type="email" class=" log-in-fields form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating log-in-field">
+                    <input type="password" class=" log-in-fields form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <a href="{% url "settings" %}" class="btn-link type="submit"">
+                    <button class="w-40 btn btn-lg btn-primary">Log in !</button>
+                </a>
+
+                <div class="d-row flex-row m-1">
+                    <span><br> <br>Not a member?
+                        <a href="{% url "registration" %}" class="btn-link ">Sign up</a>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block side_panel %}
+    {% include "inc/side_panel.html" %}
+{% endblock %}

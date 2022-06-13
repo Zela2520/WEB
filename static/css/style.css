@@ -1,0 +1,128 @@
+{% load static %}
+
+main > .container {
+  padding: 60px 15px 0;
+}
+
+body {
+    background-color: #187e80;
+}
+
+.question {
+    border: 10px solid dark;
+    background-color: #f2f3ff;
+    border-radius: 20px;
+    margin: 20px -2px;
+    padding: 10px;
+}
+
+.avatar-question {
+    width: 150px;
+    height: 150px;
+}
+
+.my_border {
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 20px;
+    background-color: #663650;
+    padding-left:25px;
+}
+
+.my_borders {
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 25px;
+    background-color: #663650;
+    padding:0px, 20px;
+    margin:0px, 20px;
+}
+
+#member {
+    text-align:center;
+}
+
+#my_button {
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 20px;
+    background-color: #3b0c0c;
+    margin-bottom: 20px;
+}
+
+#my_button1 {
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 20px;
+    background-color: #3b0c0c;
+}
+
+#my_button2 {
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 20px;
+    background-color: #3b0c0c;
+}
+
+#my_button3 {
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 20px;
+    background-color: #3b0c0c;
+}
+
+#my_button4 {
+    width: 80px;
+    height: 80px;
+    border: 2rem solid white;
+    border-width: 3px;
+    border-radius: 20px;
+    text-align:center;
+    background-color: #3b0c0c;
+}
+
+#my_button5 {
+    width: 80px;
+    height: 80px;
+    border: 2rem solid white;
+    text-align:center;
+    border-width: 3px;
+    border-radius: 20px;
+    text-align:center;
+    background-color: #3b0c0c;
+}
+
+.offset_inner {
+    margin-left: -2px;
+}
+
+.center {
+    text-align: center;
+}
+
+#line {
+    width: 1px;
+    height: 1px;
+}
+
+.paginator {
+    width: 300px;
+    border: 10px solid dark;
+    background-color: #948f8f;
+    border-radius: 10px;
+    margin-top: -50px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+#ask-question {
+    margin-left: 500px;
+    margin-button: 100px;
+}
+
+.user-avatar {
+  width: 36.5px;
+  height: 36.5px;
+  margin: 0px, 10px;
+  border-radius: 2px;
+}

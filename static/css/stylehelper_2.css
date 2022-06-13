@@ -1,0 +1,33 @@
+.input-1 {
+    background-color: white;
+    border-radius: 20px;
+    width:300px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.input-2 {
+    background-color: white;
+    border-radius: 20px;
+    height: 200px;
+}
+
+.input-3 {
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+.left-spacing-1 {
+    font-size:18px;
+    font-weight: solid;
+    margin-left: 200px;
+}
+
+.left-spacing-2 {
+    margin-left: 370px;
+}
+
+.tags {
+    padding: 200px;
+}

@@ -1,0 +1,22 @@
+{% extends "inc/base.html" %}
+{% load static %}
+
+{% block forms %}
+    <a href= "{% url "login" %}" class="m-1 btn btn-outline-secondary log-in-btn">Log in</a>
+    <a href= "{% url "registration" %}" class="m-1 btn btn-outline-secondary">Sign up</a>
+{% endblock %}
+
+{% block content %}
+    <h2 class="mt-4 my_border pb-2 pt-2">Hot</h2>
+    {% for question in index_content.0 %}
+        {% include "inc/question.html" %}
+    {% endfor %}
+{% endblock %}
+
+{% block side_panel %}
+    {% include "inc/side_panel.html" %}
+{% endblock %}
+
+{% block pagin %}
+        {% include "inc/pagination.html" %}
+{% endblock pagin %}
