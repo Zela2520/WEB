@@ -1,6 +1,5 @@
 from django.shortcuts import render
 import collections
-# General information
 
 QUESTIONS = [
      {
@@ -22,24 +21,7 @@ MEMBERS = ["Mr.Freeman", "Dr.House", "Bender", "Queen Victoria", "V.Pupkin"]
 
 CONTENT = [QUESTIONS, TAGS, MEMBERS]
 
-# Workers
 
-# Обработчик возвращает строку, состоящую из суммы question.number + 1 (инкрементирует question.number, чтобы было красиво, а не с нуля).
-def get_sum_str(i:int, adding_row: int):
-    res = i + adding_row
-    return str(res)
-
-
-def get_array_value(i: int, some_list):
-    res = some_list[i]
-    return str(res)
-
-
-# def get_counter(counter: int):
-#     counter = counter + 1
-#     return counter
-
-# картинки я хотел добавить к тайтлу вопроса, чтобы у каждого вопроса была своя картинка
 USERS = ["img/balotelli.png",
          "img/bob.png",
          "img/clinok.png",
@@ -52,12 +34,24 @@ USERS = ["img/balotelli.png",
          "img/mugivary.png"
          ]
 
+# Обработчик возвращает строку, состоящую из суммы question.number + 1 (инкрементирует question.number, чтобы было красиво, а не с нуля).
+def get_sum_str(i:int, adding_row: int):
+    res = i + adding_row
+    return str(res)
+
+
+
+def get_array_value(i: int, some_list):
+    res = some_list[i]
+    return str(res)
+
 # Create your views here.
 
 
 def index(request):
     i = 0
-    return render(request, "index.html", {"index_content": CONTENT, "users": USERS, "question_tags": QUESTIONS_TAGS, "get_picture": get_array_value(i, USERS)})
+    return render(request, "index.html", {"index_content": CONTENT, "users": USERS, "question_tags": QUESTIONS_TAGS,
+                                          "get_picture": get_array_value(i, USERS)})
 
 
 def question(request, i: int):
