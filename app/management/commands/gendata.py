@@ -2,7 +2,7 @@ import django
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
-from django.conf import models
+from app.models import Question, Profile, LikeQuestion, LikeAnswer, Tag, Answer
 
 from faker import Faker
 from collections import OrderedDict

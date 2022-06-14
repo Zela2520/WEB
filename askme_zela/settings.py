@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'app',
-    'app.models',
     'askme_zela',
     'django.contrib.admin',
     'django.contrib.auth',
