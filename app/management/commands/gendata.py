@@ -1,7 +1,8 @@
+import django
 
-from askme_zela.settings import BASE_DIR
+from django.conf import settings
 from django.core.management.base import BaseCommand
-from app.models import Question, Profile, LikeQuestion, LikeAnswer, Tag, Answer
+from django.conf import models
 
 from faker import Faker
 from collections import OrderedDict
