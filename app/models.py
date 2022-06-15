@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Count
@@ -101,5 +102,3 @@ class LikeAnswer(models.Model):
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
-
-# Create your models here.

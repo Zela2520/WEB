@@ -1,15 +1,66 @@
 {% extends "inc/base.html" %}
+{% load static %}
 
-<div>HUUuuuuuuuuuuu </div>
 {% block forms %}
     <a href= "{% url "login" %}" class="m-1 btn btn-outline-secondary log-in-btn">Log in</a>
     <a href= "{% url "registration" %}" class="m-1 btn btn-outline-secondary">Sign up</a>
-{% endblock %}
+{% endblock forms%}
 
 {% block content %}
     <h2 class="mt-4 my_border pb-2 pt-2">Questions</h2>
     {% for question in content.questions %}
-        {% include "inc/question.html" %}
+        <div class="mt-4 pt-1 d-flex flex-row question">
+    <div class="col-2">
+        <div class="d-flex flex-row mt-4 justify-content-center">
+            <img class="avatar-question" src="{% static "img/pepa.png" %}", alt="">
+        </div>
+        <div class="mt-1 pt-1 d-flex flex-row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <button type="button" class="btn btn-md btn-outline-success"><b>🤩</b>&nbsp; 20</button>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <button type="button" class="btn btn-md btn-outline-danger"><b>❤</b>&nbsp; 15</button>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <button type="button" class="btn btn-md btn-outline-warning"><b>🤡</b>&nbsp; 5</button>
+            </div>
+        </div>
+        <div class="d-flex flex-row mt-2 offset_inner">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <a href="#" style="color:black">
+                    <button type="button" class="btn btn-secondary btn-md text-center" id="my_button4"><p class="text-center"><b>{{question.counter_answers}}</b>&nbsp; 50</p></button>
+                </a>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <a href="#" style="color:black">
+                    <button type="button" class="btn btn-secondary btn-md" id="my_button5"><p class="text-center"><b>rating</b>&nbsp; {{question.counter_votes}}</p></button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 m-2">
+        <div class = "d-flex flex-row mt-2"></div>
+        <h3><a href="{% url 'question' question.id %}" style="color:black">{{ question.title }}</a></h3>
+        <p>{{ question.text }}</p>
+        <div class="mt-4 pt-1 d-flex flex-row">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+        </div>
+        <div class="mt-4 pt-1 d-flex flex-row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><p class="mt-4"><b>Username:</b>&nbsp;<a href="#" style="color:black">@gmail.com</a></p></div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <p class="mt-4"><b>Tags:</b>&nbsp;
+                    {% for tag in question.tags.all %}
+                        <a href="{% url "tag" tag.name %}" style="color:black; margin-right:10px">{{ tag.name }}</a>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
     {% endfor %}
 {% endblock %}
 
