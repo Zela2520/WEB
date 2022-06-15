@@ -1,5 +1,6 @@
 {% extends "inc/base.html" %}
 
+<div>HUUuuuuuuuuuuu </div>
 {% block forms %}
     <a href= "{% url "login" %}" class="m-1 btn btn-outline-secondary log-in-btn">Log in</a>
     <a href= "{% url "registration" %}" class="m-1 btn btn-outline-secondary">Sign up</a>
@@ -7,7 +8,7 @@
 
 {% block content %}
     <h2 class="mt-4 my_border pb-2 pt-2">Questions</h2>
-    {% for question in index_content.0 %}
+    {% for question in content.questions %}
         {% include "inc/question.html" %}
     {% endfor %}
 {% endblock %}
@@ -17,5 +18,5 @@
 {% endblock %}
 
 {% block pagin %}
-        {% include "inc/pagination.html" %}
-{% endblock pagin %}
+        {% include "pagination.html" %}
+{% endblock %}

@@ -3,7 +3,7 @@
 <div class="mt-4 pt-1 d-flex flex-row question">
     <div class="col-2">
         <div class="d-flex flex-row mt-4 justify-content-center">
-            <img class="avatar-question" src="{% static get_picture %}", alt="">
+            <img class="avatar-question" src="{% static "img/bob.png" %}", alt="">
         </div>
         <div class="mt-1 pt-1 d-flex flex-row">
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -19,12 +19,12 @@
         <div class="d-flex flex-row mt-2 offset_inner">
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <a href="#" style="color:black">
-                    <button type="button" class="btn btn-secondary btn-md text-center" id="my_button4"><p class="text-center"><b>answer</b>&nbsp; 50</p></button>
+                    <button type="button" class="btn btn-secondary btn-md text-center" id="my_button4"><p class="text-center"><b>{{question.counter_answers}}</b>&nbsp; 50</p></button>
                 </a>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <a href="#" style="color:black">
-                    <button type="button" class="btn btn-secondary btn-md" id="my_button5"><p class="text-center"><b>rating</b>&nbsp; 380</p></button>
+                    <button type="button" class="btn btn-secondary btn-md" id="my_button5"><p class="text-center"><b>rating</b>&nbsp; {{question.counter_votes}}</p></button>
                 </a>
             </div>
         </div>
@@ -44,17 +44,9 @@
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><p class="mt-4"><b>Username:</b>&nbsp;<a href="#" style="color:black">@gmail.com</a></p></div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <p class="mt-4"><b>Tags:</b>&nbsp;
-                    {% if not cur_tag %}
-                        {% for tag in question_tags %}
-                            <a href="{% url "tag" tag %}" style="color:black; margin-right:10px">{{ tag }}</a>
-                        {% endfor %}
-                    {% else %}
-                        {% for tag in question_tags %}
-                            {% if cur_tag == tag %}
-                                <a href="{% url "tag" tag %}" style="color:black; margin-right:10px">{{ tag }}</a>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
+                    {% for tag in question.tags.all %}
+                        <a href="{% url "tag" tag.name %}" style="color:black; margin-right:10px">{{ tag.name }}</a>
+                    {% endfor %}
                 </p>
             </div>
         </div>

@@ -1,22 +1,22 @@
 <div class="d-flex flex-row align-items-center">
     <div class="col-md-4 m-md-3">
         <div class="h5">
-            <a href="{% url "tag" tag.1 %}" style="color:black">
-                <button type="button" class="btn btn-secondary btn-md" id="my_button">{{ tag.1 }}</button>
+            <a href="{% url "tag" tag.1.name %}" style="color:black">
+                <button type="button" class="btn btn-secondary btn-md" id="my_button">{{ tag.1.name }}</button>
             </a>
         </div>
     </div>
     <div class="col-md-4 m-md-3 offset-md-4">
         <div class="h5">
-            <a href="{% url "tag" tag.2 %}" style="color:black">
-                <button type="button" class="btn btn-secondary btn-md" id="my_button2">{{ tag.2 }}</button>
+            <a href="{% url "tag" tag.2.name %}" style="color:black">
+                <button type="button" class="btn btn-secondary btn-md" id="my_button2">{{ tag.2.name }}</button>
             </a>
         </div>
     </div>
     <div class="col-md-4 m-md-3 offset-md-4">
         <div class="h5">
-            <a href="{% url "tag" tag.3 %}" style="color:black">
-                <button type="button" class="btn btn-secondary btn-md" id="my_button3">{{ tag.3 }}</button>
+            <a href="{% url "tag" tag.3.name %}" style="color:black">
+                <button type="button" class="btn btn-secondary btn-md" id="my_button3">{{ tag.3.name }}</button>
             </a>
         </div>
     </div>
