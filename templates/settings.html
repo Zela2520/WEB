@@ -24,7 +24,11 @@
                     </div>
 
                     <div class="col-md-6 text-center">
-                        <h5> <b> daniil-zzz@mail.ru </b></h5>
+                        {% if cur_question %}
+                            <h5> <b> {{ cur_question.profile.user }} </b></h5>
+                        {% else %}
+                            <h5> <b> @user_email </b></h5>
+                        {% endif %}
                     </div>
                 </div>
 

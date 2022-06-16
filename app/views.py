@@ -1,6 +1,5 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from paginator import paginate
 from django.core.paginator import Paginator
 from app.models import *
 
@@ -25,7 +24,10 @@ USER = {"is_auth": False}
 
 def index(request):
     questions = Question.objects.new()
-    page_obj = paginate(questions, request, 10)
+    paginator = Paginator(questions, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     top_tags = Tag.objects.top_tags(10)
 
     # в блоке ниже группируем данные полученные из БД для их желаемого отображения на странице
@@ -60,9 +62,13 @@ def question(request, i: int):
     }
     try:
         question = Question.objects.by_id(i)
-        answers = paginate(Answer.objects.answer_by_question(i), request, 10)
+        answers = Answer.objects.answer_by_question(i)
+        paginator = Paginator(answers, 5)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
         content.update({
-            "answers": answers,
+            "answers": page_obj,
             "question": question,
         })
     except Exception:
@@ -72,13 +78,16 @@ def question(request, i: int):
 
 def hot(request):
     questions = Question.objects.hot()
-    page_obj = paginate(questions, request, 10)
+    paginator = Paginator(questions, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     top_tags = Tag.objects.top_tags(10)
     first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
     second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
     third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
     side_panel_tags = [first_row, second_row, third_row]
+
     content = {
         "questions": page_obj,
         "active_users": top_users,
@@ -106,7 +115,10 @@ def tag_listing(request, tag: str):
     }
     try:
         questions = Question.objects.by_tag(tag)
-        page_obj = paginate(questions, request, 10)
+        paginator = Paginator(questions, 5)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
         content.update({
             "questions": page_obj,
         })
