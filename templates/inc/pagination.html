@@ -1,21 +1,25 @@
 {% load static %}
-<div class="container offset-sm-1 justify-content-center mt-4 mb-4">
-      <div class="btn btn-dark">1</div>
-      {% if cur_tag %}
-            <a class="btn btn-dark" href="{% url "tag" cur_tag %}" rel="" title="Go to page 2">2</a>
-            <a class="btn btn-dark" href="{% url "tag" cur_tag %}" rel="" title="Go to page 3">3</a>
-            <a class="btn btn-dark" href="{% url "tag" cur_tag %}" rel="" title="Go to page 4">4</a>
-            <a class="btn btn-dark" href="{% url "tag" cur_tag %}" rel="" title="Go to page 5">5</a>
-            <span class="fs-2"> ....</span>
-            <a class="btn btn-dark" href="{% url "tag" cur_tag %}" rel="" title="Go to page 1337">1337</a>
-            <a class="btn btn-dark" href="{% url "tag" cur_tag %}" rel="next" title="Go to page 1"> Next</a>
-      {% else %}
-            <a class="btn btn-dark" href="{% url "question" 1 %}" rel="" title="Go to page 2">2</a>
-            <a class="btn btn-dark" href="{% url "question" 2 %}" rel="" title="Go to page 3">3</a>
-            <a class="btn btn-dark" href="{% url "question" 3 %}" rel="" title="Go to page 4">4</a>
-            <a class="btn btn-dark" href="{% url "question" 4 %}" rel="" title="Go to page 5">5</a>
-            <span class="fs-2"> ....</span>
-            <a class="btn btn-dark" href="{% url "question" 9 %}" rel="" title="Go to page 1337">1337</a>
-            <a class="btn btn-dark" href="{% url "question" 0 %}" rel="next" title="Go to page 1"> Next</a>
-      {% endif %}
+<div class="d-flex flex-row justify-content-center mb-3">
+      <nav aria-label="...">
+         <ul class="pagination mb-0">
+              <li class="page-item {% if not prev_url %} disabled {% endif %}">
+                <a class="btn btn-light" href="{{ prev_url }}" tabindex="-1">Previous</a>
+              </li>
+             {% for n in page_object.paginator.page_range %}
+                {% if page_object.number == n %}
+                    <li class="page-item {% if not prev_url %} disabled {% endif %}">
+                        <a class="btn btn-light" href="?page={{ n }}"><span class="sr-only">(current)</span>{{n}}</a>
+                    </li>
+
+                {% elif n > page_object.number|add:-2 and n < page_object.number|add:2 %}
+                  <li class="page-item">
+                    <a class="btn btn-light" href="?page={{ n }}">{{ n }}</a>
+                  </li>
+                {% endif %}
+             {% endfor %}
+             <li class="page-item {% if not next_url %} disabled {% endif %}">
+                <a class="btn btn-light" href="{{ next_url }}" tabindex="-1">Next</a>
+            </li>
+         </ul>
+      </nav>
 </div>

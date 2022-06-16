@@ -71,8 +71,9 @@ def question(request, i: int):
 
 
 def hot(request):
-    questions = Question.objects.new()
+    questions = Question.objects.hot()
     page_obj = paginate(questions, request, 10)
+
     top_tags = Tag.objects.top_tags(10)
     first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
     second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
@@ -117,8 +118,14 @@ def tag_listing(request, tag: str):
 
 def ask(request):
     USER['is_auth'] = True
+    top_tags = Tag.objects.top_tags(10)
+    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
+    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
+    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
+    side_panel_tags = [first_row, second_row, third_row]
     content = {
         "active_users": top_users,
+        "side_panel_tags": side_panel_tags,
         "popular_tags": Tag.objects.top_tags(10),
         "auth": USER['is_auth']
     }
@@ -127,8 +134,14 @@ def ask(request):
 
 def login(request):
     USER['is_auth'] = True
+    top_tags = Tag.objects.top_tags(10)
+    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
+    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
+    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
+    side_panel_tags = [first_row, second_row, third_row]
     content = {
         "active_users": top_users,
+        "side_panel_tags": side_panel_tags,
         "popular_tags": Tag.objects.top_tags(10),
         "auth": USER['is_auth']
     }
@@ -136,8 +149,14 @@ def login(request):
 
 
 def registration(request):
+    top_tags = Tag.objects.top_tags(10)
+    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
+    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
+    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
+    side_panel_tags = [first_row, second_row, third_row]
     content = {
         "active_users": top_users,
+        "side_panel_tags": side_panel_tags,
         "popular_tags": Tag.objects.top_tags(10),
         "auth": False
     }
@@ -145,12 +164,18 @@ def registration(request):
 
 
 def settings(request):
+    top_tags = Tag.objects.top_tags(10)
+    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
+    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
+    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
+    side_panel_tags = [first_row, second_row, third_row]
     content = {
         "active_users": top_users,
+        "side_panel_tags": side_panel_tags,
         "popular_tags": Tag.objects.top_tags(10),
         "auth": USER['is_auth']
     }
-    return render(request, "setting.html", content)
+    return render(request, "settings.html", content)
 
 
 def logout(request):

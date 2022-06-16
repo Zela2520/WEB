@@ -39,14 +39,6 @@
         <span class="text-danger">{{ answer.question.counter_answers }}</span>
       </div>
 
-        <div class="answer-check-box">
-          {% if answer.is_correct %}
-              <input class="answer-check-box form-check-input" type="checkbox" value="" checked>
-          {% else %}
-              <input class="answer-check-box form-check-input" type="checkbox" value="">
-          {% endif %}
-        </div>
-
       <div class="col-9">
         <div class="d-flex flex-row">
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><p class="mt-2"><b>Username:</b>&nbsp;<a href="#" style="color:black">{{answer.question.email}}</a></p></div>

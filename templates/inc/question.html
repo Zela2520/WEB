@@ -44,9 +44,13 @@
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><p class="mt-4"><b>Username:</b>&nbsp;<a href="#" style="color:black">@gmail.com</a></p></div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <p class="mt-4"><b>Tags:</b>&nbsp;
-                    {% for tag in popular_tags %}
+                    {% if tag %}
                         <a href="{% url "tag" tag %}" style="color:black; margin-right:10px">{{ tag }}</a>
-                    {% endfor %}
+                    {% else %}
+                        {% for tag in popular_tags %}
+                            <a href="{% url "tag" tag %}" style="color:black; margin-right:10px">{{ tag }}</a>
+                        {% endfor %}
+                    {% endif %}
                 </p>
             </div>
         </div>
