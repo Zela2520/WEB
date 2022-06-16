@@ -46,9 +46,16 @@ def index(request):
 
 
 def question(request, i: int):
+    top_tags = Tag.objects.top_tags(10)
+    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
+    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
+    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
+    side_panel_tags = [first_row, second_row, third_row]
+
     content = {
         "active_users": top_users,
         "popular_tags": Tag.objects.top_tags(10),
+        "side_panel_tags": side_panel_tags,
         "auth": USER['is_auth']
     }
     try:
@@ -61,6 +68,51 @@ def question(request, i: int):
     except Exception:
         return render(request, "page_not_found.html", content, status=404)
     return render(request, "question_page.html", content)
+
+
+def hot(request):
+    questions = Question.objects.new()
+    page_obj = paginate(questions, request, 10)
+    top_tags = Tag.objects.top_tags(10)
+    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
+    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
+    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
+    side_panel_tags = [first_row, second_row, third_row]
+    content = {
+        "questions": page_obj,
+        "active_users": top_users,
+        "side_panel_tags": side_panel_tags,
+        "popular_tags": top_tags,
+        "auth": USER['is_auth']
+    }
+
+    return render(request, "hot.html", content)
+
+
+def tag_listing(request, tag: str):
+    top_tags = Tag.objects.top_tags(10)
+    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
+    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
+    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
+    side_panel_tags = [first_row, second_row, third_row]
+
+    content = {
+        "tag": tag,
+        "active_users": top_users,
+        "side_panel_tags": side_panel_tags,
+        "popular_tags": Tag.objects.top_tags(10),
+        "auth": USER['is_auth']
+    }
+    try:
+        questions = Question.objects.by_tag(tag)
+        page_obj = paginate(questions, request, 10)
+        content.update({
+            "questions": page_obj,
+        })
+    except Exception:
+        return render(request, "page_not_found.html", content, status=404)
+
+    return render(request, "tag_listing.html", content)
 
 
 def ask(request):
@@ -104,36 +156,3 @@ def settings(request):
 def logout(request):
     USER['is_auth'] = False
     return index(request)
-
-
-def hot(request):
-    questions = Question.objects.new()
-    page_obj = paginate(questions, request, 10)
-    top_tags = Tag.objects.top_tags(10)
-    content = {
-        "questions": page_obj,
-        "active_users": top_users,
-        "popular_tags": top_tags,
-        "auth": USER['is_auth']
-    }
-
-    return render(request, "hot.html", content)
-
-
-def tag_listing(request, tag: str):
-    content = {
-        "tag": tag,
-        "active_users": top_users,
-        "popular_tags": Tag.objects.top_tags(10),
-        "auth": USER['is_auth']
-    }
-    try:
-        questions = Question.objects.by_tag(tag)
-        page_obj = paginate(questions, request, 10)
-        content.update({
-            "questions": page_obj,
-        })
-    except Exception:
-        return render(request, "page_not_found.html", content, status=404)
-
-    return render(request, "tag_listing.html", content)

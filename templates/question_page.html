@@ -8,12 +8,23 @@
 
 {% block content %}
     <h2 class="mt-4 my_border pb-2 pt-2">Question</h2>
-    {% include "inc/question.html" %}
-    <hr class="answer-hr">
-    <h3><a href="{% url "index" %}" class="text-decoration-none text-dark">2 answers</a></h3>
-    {% include "inc/best_answer.html" %}
 
-    {% include "inc/answer.html" %}
+    {% include "inc/question.html" %}
+
+    <hr class="answer-hr">
+    <h3><a href="{% url "question" question.id %}" class="text-decoration-none text-dark">{{answers.paginator.count}} Answers </a></h3>
+
+    {% for answer in answers %}
+        {% if answer.is_correct %}
+            {% include "inc/best_answer.html" %}
+        {% endif %}
+    {% endfor %}
+
+    {% for answer in answers %}
+        {% if not answer.is_correct %}
+            {% include "inc/answer.html" %}
+        {% endif %}
+    {% endfor %}
 
       <hr class="hr">
       <div class="container-fluid">

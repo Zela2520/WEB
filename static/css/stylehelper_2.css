@@ -31,3 +31,8 @@
 .tags {
     padding: 200px;
 }
+
+.my_pagination {
+    max-width: 300px;
+    margin: 0 auto;
+}

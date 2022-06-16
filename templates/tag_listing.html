@@ -7,8 +7,8 @@
 {% endblock %}
 
 {% block content %}
-    <h2 class="mt-4 my_border pb-2 pt-2">Tag: {{cur_tag}}</h2>
-    {% for question in index_content.0 %}
+    <h2 class="mt-4 my_border pb-2 pt-2">Tag: {{tag}}</h2>
+    {% for question in questions %}
         {% include "inc/question.html" %}
     {% endfor %}
 {% endblock %}

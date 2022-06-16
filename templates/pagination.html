@@ -2,33 +2,31 @@
 <div class="row">
     <div class="d-flex justify-content-center">
         <div class="pagination">
-        <span class="step-links">
+            <span class="step-links">
+                <a class="btn btn-dark" href="?page=1" rel="" title="Go to page 1">1</a>
 
-            <a class="btn btn-dark" href="?page=1" rel="" title="Go to page 1">1</a>
+                {% if content.has_previous %}
+                    <a class="btn btn-dark" href="?page={{ questions.previous_page_number }}" rel="" title="Go to page {{ questions.previous_page_number }}"> < </a>
+                {% endif %}
+                {% if not content.has_previous %}
+                  <a class="btn btn-dark disabled" href="" rel="" title=""> < </a>
+                {% endif %}
 
-            {% if content.has_previous %}
-                <a class="btn btn-dark" href="?page={{ content.previous_page_number }}" rel="" title="Go to page {{ content.previous_page_number }}
-                      "> < </a>
-            {% endif %}
-            {% if not content.has_previous %}
-              <a class="btn btn-dark disabled" href="" rel="" title=""> < </a>
-            {% endif %}
+                <span class="current">
+                    <span class="pages">Page {{ content.number }} of {{ content.paginator.num_pages }} </span>
+                </span>
 
-            <span class="current">
-                <span class="pages">Page {{ content.number }} of {{ content.paginator.num_pages }} </span>
-            </span>
+                {% if content.has_next %}
+                     <a class="btn btn-dark" href="?page={{ questions.next_page_number }}" rel="" title="Go to page {{ questions.next_page_number }}"> > </a>
+                {% endif %}
+                {% if not content.has_next %}
+                    <a class="btn btn-dark disabled" href="" rel="" title=""> > </a>
+                {% endif %}
 
-            {% if content.has_next %}
-                 <a class="btn btn-dark" href="?page={{ content.next_page_number }}" rel="" title="Go to page {{ content.next_page_number }}
-                      "> > </a>
-            {% endif %}
-            {% if not content.has_next %}
-                <a class="btn btn-dark disabled" href="" rel="" title=""> > </a>
-            {% endif %}
-            <a class="btn btn-dark" href="?page={{ content.paginator.num_pages }}" rel=""
-                    title="Go to page{{ content.paginator.num_pages }}">{{ content.paginator.num_pages }}</a>
-
-          </span>
+                <a class="btn btn-dark" href="?page={{ questions.paginator.num_pages }}" rel=""
+                        title="Go to page{{ questions.paginator.num_pages }}">{{ content.paginator.num_pages }}
+                </a>
+              </span>
         </div>
     </div>
 </div>

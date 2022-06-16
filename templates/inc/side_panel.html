@@ -4,7 +4,7 @@
         <h2 class = "col-md-12 offset-sm-1 my_border w-80 text-center pb-2 pt-2">Popular Tags</h2>
     </div>
 
-    {% for tag in content.side_panel_tags %}
+    {% for tag in side_panel_tags %}
         {% include "inc/tags.html" %}
     {% endfor %}
 
@@ -12,7 +12,7 @@
         <h2 class = "col-md-12 offset-sm-1 my_border w-80 text-center pb-2 pt-2">Best members</h2>
     </div>
 
-    {% for member in content.active_users %}
+    {% for member in active_users %}
         {% include "inc/members.html" %}
     {% endfor %}
 </div>

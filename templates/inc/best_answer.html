@@ -8,11 +8,7 @@
       </div>
       <div class="col-10">
         <div class="d-flex flex-row m-4">
-          <p class="answer-text"><a href="{% url 'question' question.number %}" style="color:black">{{ answer_id }}</a>  Do it. Just do it. Don't let your dreams be dreams. Yesterday, you said tomorrow.
-            So just do it. Make your dreams come true. Just do it. Some people dream of success, while you're gonna
-            wake up and work hard at it. Nothing is impossible. You should get to the point where anyone else would
-            quit, and you're not gonna stop there. No, what are you waiting for? Do it! Just do it! Yes you can.
-            Just do it.</p>
+          <p class="answer-text"><a href="{% url 'question' question.id %}" style="color:black">{{ answer_id }}</a> {{ answer.text }}</p>
         </div>
       </div>
     </div>
@@ -29,7 +25,7 @@
           </svg>
         </div>
 
-        <span class="text-success">25</span>
+        <span class="text-success">{{answer.question.counter_votes}}</span>
 
         <div class="btn likes-buttons">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
@@ -40,25 +36,17 @@
               d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
           </svg>
         </div>
-        <span class="text-danger">13</span>
+        <span class="text-danger"> {{ answer.question.counter_answers }} </span>
       </div>
 
       <div class="col-9">
         <div class="d-flex flex-row">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><p class="mt-2"><b>Username:</b>&nbsp;<a href="#" style="color:black">@gmail.com</a></p></div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><p class="mt-2"><b>Username:</b>&nbsp;<a href="#" style="color:black">{{ answer.profile.email}}</a></p></div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <p class="mt-2"><b>Tags:</b>&nbsp;
-                    {% if not cur_tag %}
-                        {% for tag in question_tags %}
-                            <a href="{% url "tag" tag %}" style="color:black; margin-right:10px">{{ tag }}</a>
-                        {% endfor %}
-                    {% else %}
-                        {% for tag in question_tags %}
-                            {% if cur_tag == tag %}
-                                <a href="{% url "tag" tag %}" style="color:black; margin-right:10px">{{ tag }}</a>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
+                    {% for tag in popular_tags %}
+                        <a href="{% url "tag" tag %}" style="color:black; margin-right:10px">{{ tag }}</a>
+                    {% endfor %}
                 </p>
             </div>
         </div>
