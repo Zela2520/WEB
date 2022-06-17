@@ -1,26 +1,9 @@
 {% load static %}
 <div class="d-flex flex-row justify-content-center mb-3">
-<!--    <nav aria-label="Page navigation example">-->
-<!--      <ul class="pagination">-->
-<!--        <li class="page-item">-->
-<!--          <a class="page-link" href="#" aria-label="Previous">-->
-<!--            <span aria-hidden="true">&laquo;</span>-->
-<!--          </a>-->
-<!--        </li>-->
-<!--        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--        <li class="page-item">-->
-<!--          <a class="page-link" href="#" aria-label="Next">-->
-<!--            <span aria-hidden="true">&raquo;</span>-->
-<!--          </a>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--    </nav>-->
     {% if questions.has_previous%}
-        <a href="{% url 'index' %}?page={{questions.previous_page_number}}">Previous page</a>
+        <a href="{% url 'index' %}?page={{questions.previous_page_number}}"><span class = "paginate_title">Previous page</span></a>
     {% endif %}
     {% if questions.has_next %}
-        <a href="{% url 'index' %}?page={{questions.next_page_number}}">Next page</a>
+        <a href="{% url 'index' %}?page={{questions.next_page_number}}"><span class = "paginate_title">Next page</span></a>
     {% endif %}
 </div>
