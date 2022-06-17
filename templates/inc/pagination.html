@@ -1,9 +1,9 @@
 {% load static %}
 <div class="d-flex flex-row justify-content-center mb-3">
-    {% if questions.has_previous%}
-        <a href="{% url 'index' %}?page={{questions.previous_page_number}}"><span class = "paginate_title">Previous page</span></a>
+    {% if context.has_previous%}
+        <a href="{% url 'index' %}?page={{context.previous_page_number}}"><span class = "paginate_title">Previous page</span></a>
     {% endif %}
-    {% if questions.has_next %}
-        <a href="{% url 'index' %}?page={{questions.next_page_number}}"><span class = "paginate_title">Next page</span></a>
+    {% if context.has_next %}
+        <a href="{% url 'index' %}?page={{context.next_page_number}}"><span class = "paginate_title">Next page</span></a>
     {% endif %}
 </div>

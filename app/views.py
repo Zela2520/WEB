@@ -37,7 +37,7 @@ def index(request):
     side_panel_tags = [first_row, second_row, third_row]
 
     content = {
-        "questions": page_obj,
+        "context": page_obj,
         "active_users": top_users,
         "popular_tags": top_tags,
         "side_panel_tags": side_panel_tags,
@@ -68,7 +68,7 @@ def question(request, i: int):
         page_obj = paginator.get_page(page_number)
 
         content.update({
-            "answers": page_obj,
+            "context": page_obj,
             "question": question,
         })
     except Exception:
@@ -89,7 +89,7 @@ def hot(request):
     side_panel_tags = [first_row, second_row, third_row]
 
     content = {
-        "questions": page_obj,
+        "context": page_obj,
         "active_users": top_users,
         "side_panel_tags": side_panel_tags,
         "popular_tags": top_tags,
@@ -120,7 +120,7 @@ def tag_listing(request, tag: str):
         page_obj = paginator.get_page(page_number)
 
         content.update({
-            "questions": page_obj,
+            "context": page_obj,
         })
     except Exception:
         return render(request, "page_not_found.html", content, status=404)

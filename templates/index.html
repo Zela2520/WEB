@@ -7,7 +7,7 @@
 
 {% block content %}
     <h2 class="mt-4 my_border pb-2 pt-2">Questions</h2>
-    {% for question in questions %}
+    {% for question in context %}
         {% include "inc/question.html" %}
     {% endfor %}
 {% endblock %}

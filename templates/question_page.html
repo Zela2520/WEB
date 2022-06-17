@@ -14,13 +14,13 @@
     <hr class="answer-hr">
     <h3><a href="{% url "question" question.id %}" class="text-decoration-none text-dark">{{answers.paginator.count}} Answers </a></h3>
 
-    {% for answer in answers %}
+    {% for answer in context %}
         {% if answer.is_correct %}
             {% include "inc/best_answer.html" %}
         {% endif %}
     {% endfor %}
 
-    {% for answer in answers %}
+    {% for answer in context %}
         {% if not answer.is_correct %}
             {% include "inc/answer.html" %}
         {% endif %}
@@ -51,7 +51,3 @@
 {% block side_panel %}
     {% include "inc/side_panel.html" %}
 {% endblock %}
-
-{% block pagin %}
-  {% include "inc/pagination.html" %}
-{% endblock pagin %}
