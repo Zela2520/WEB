@@ -1,5 +1,6 @@
 {% extends "inc/base.html" %}
 {% load static %}
+{% load bootstrap4 %}
 
 {% block forms %}
      <a class="m-1" href="{% url "settings" %}"><img class="user-avatar" src="{% static "img/kot.png" %}"></a>
@@ -81,7 +82,7 @@
             </div>
         </div>
 
-        <form class="question">
+        {% comment %} <form action="/settings/" method="POST" class="question">
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -115,8 +116,10 @@
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
               </div>
+                {% csrf_token %}
+                {% bootstrap_form form %}
               <button type="submit" class="btn btn-primary">Accept changes</button>
-        </form>
+        </form> {% endcomment %}
 
         <form>
             <div class="container-fluid">
@@ -129,7 +132,7 @@
                     </div>
                 </div>
                 <div class="d-flex flex-row mb-4">
-                    <a href="{%url "index" %}" class="w-40 btn btn-lg btn-dark">Log out</a>
+                    <a href="{% url "index" %}" class="w-40 btn btn-lg btn-dark">Log out</a>
                 </div>
             </div>
         </form>
