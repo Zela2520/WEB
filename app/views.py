@@ -1,73 +1,63 @@
 from django.shortcuts import redirect, render
-from django.core.paginator import Paginator
+from django.http import HttpResponse
+from paginator import paginate
 from app.models import *
-
-
 from django.contrib import auth
-from app.forms import LoginForm,  QuestionForm, SettingsForm, SignUpForm, AnswerForm
+from app.forms import LoginForm, SignUpForm, SettingsForm, QuestionForm, AnswerForm
+from django.urls import reverse
 from django.core.cache import cache
-from askme_zela.settings import LOGIN_URL
+from askme.settings import LOGIN_URL
+from django.core.paginator import Paginator
+
 
 from django.contrib.auth.decorators import login_required
 
 
-# Обработчик возвращает строку, состоящую из суммы question.number + 1 (инкрементирует question.number, чтобы было красиво, а не с нуля).
-
-
-def get_sum_str(i: int, adding_row: int):
-    res = i + adding_row
-    return str(res)
-
-
-def get_array_value(i: int, some_list):
-    res = some_list[i]
-    return str(res)
-
-
 top_users = Profile.objects.get_top_users(10)
 
-# Create your views here.
 
-USER = {"is_auth": False}
+USER = {"is_auth": True}
+
 
 def index(request):
     questions = Question.objects.new()
-    paginator = Paginator(questions, 5)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
+    page_obj = paginate(questions, request, 10)
     top_tags = Tag.objects.top_tags(10)
-
-    # в блоке ниже группируем данные полученные из БД для их желаемого отображения на странице
-    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
-    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
-    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
-    side_panel_tags = [first_row, second_row, third_row]
-
-    content = {
-        "context": page_obj,
-        "active_users": top_users,
-        "popular_tags": top_tags,
-        "side_panel_tags": side_panel_tags,
-        "auth": USER['is_auth']
+    context = {
+        "page_obj": page_obj,
+        "best_memb_list": top_users,
+        "page_title": "New questions",
+        "tags_list": top_tags,
     }
 
-    return render(request, "index.html", content)
+    return render(request, "index.html", context)
+
+
+@login_required(login_url="login", redirect_field_name="continue")
+def ask(request):
+    if request.method == "GET":
+        form = QuestionForm()
+    if request.method == "POST":
+        form = QuestionForm(data=request.POST)
+        if form.is_valid():
+            profile = Profile.objects.get(user=request.user)
+            question = form.save(profile)
+            return redirect("question", i=question.id)
+
+    context = {
+        "best_memb_list": top_users,
+        "tags_list": Tag.objects.top_tags(10),
+        "form": form
+    }
+
+    return render(request, "ask.html", context)
 
 
 def question(request, i: int):
-    top_tags = Tag.objects.top_tags(10)
-    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
-    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
-    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
-    side_panel_tags = [first_row, second_row, third_row]
-
-    content = {
-        "active_users": top_users,
-        "popular_tags": Tag.objects.top_tags(10),
-        "side_panel_tags": side_panel_tags,
+    context = {
+        "best_memb_list": top_users,
+        "tags_list": Tag.objects.top_tags(10),
     }
-
     if request.method == "POST":
         if not request.user.is_authenticated:
             return redirect(f'{LOGIN_URL}?continue={request.path}')
@@ -75,7 +65,7 @@ def question(request, i: int):
             form = AnswerForm(data=request.POST)
             if (form.is_valid):
                 ans = form.save(commit=False)
-                profile = Profile.objects.get(id=request.user.id)
+                profile = Profile.objects.get(user=request.user)
                 question = Question.objects.get(id=i)
                 ans.profile = profile
                 ans.question = question
@@ -87,107 +77,77 @@ def question(request, i: int):
     if request.method == "GET":
         try:
             question = Question.objects.by_id(i)
-            answers = Answer.objects.answer_by_question(i)
-            paginator = Paginator(answers, 5)
-            page_number = request.GET.get('page')
-            page_obj = paginator.get_page(page_number)
+            answers = paginate(Answer.objects.answer_by_question(i), request, 10)
             form = AnswerForm()
-
-            content.update({
-                "context": page_obj,
+            context.update({
+                "page_obj": answers,
                 "question": question,
                 "form": form
             })
         except Exception:
-            return render(request, "page_not_found.html", content, status=404)
+            return render(request, "not_found.html", context, status=404)
+    return render(request, "question.html", context)
 
-    return render(request, "question_page.html", content)
 
-
-def hot(request):
+def hot_questions(request):
     questions = Question.objects.hot()
-    paginator = Paginator(questions, 5)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
+    page_obj = paginate(questions, request, 10)
     top_tags = Tag.objects.top_tags(10)
-    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
-    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
-    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
-    side_panel_tags = [first_row, second_row, third_row]
-
-    content = {
-        "context": page_obj,
-        "active_users": top_users,
-        "side_panel_tags": side_panel_tags,
-        "popular_tags": top_tags,
-        "auth": USER['is_auth']
+    context = {
+        "page_obj": page_obj,
+        "best_memb_list": top_users,
+        "page_title": "Hot questions",
+        "tags_list": top_tags,
     }
 
-    return render(request, "hot.html", content)
+    return render(request, "index.html", context)
 
 
-def tag_listing(request, tag: str):
-    top_tags = Tag.objects.top_tags(10)
-    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
-    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
-    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
-    side_panel_tags = [first_row, second_row, third_row]
-
-    content = {
-        "tag": tag,
-        "active_users": top_users,
-        "side_panel_tags": side_panel_tags,
-        "popular_tags": Tag.objects.top_tags(10),
+def questions_with_tag(request, tag: str):
+    context = {
+        "best_memb_list": top_users,
+        "tags_list": Tag.objects.top_tags(10),
         "auth": USER['is_auth']
     }
     try:
         questions = Question.objects.by_tag(tag)
-        paginator = Paginator(questions, 5)
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-
-        content.update({
-            "context": page_obj,
+        if (questions.count() == 0):
+            raise Question.DoesNotExist("asdasd")
+        page_obj = paginate(questions, request, 10)
+        context.update({
+            "page_obj": page_obj,
+            "page_title": f"Tag: {tag}",
         })
     except Exception:
-        return render(request, "page_not_found.html", content, status=404)
+        return render(request, "not_found.html", context, status=404)
 
-    return render(request, "tag_listing.html", content)
+    return render(request, "index.html", context)
 
 
-@login_required(login_url="login", redirect_field_name="continue")
-def ask(request):
-    top_tags = Tag.objects.top_tags(10)
-    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
-    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
-    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
-    side_panel_tags = [first_row, second_row, third_row]
-
+def signup(request):
+    if request.user.is_authenticated:
+        return redirect("home")
     if request.method == "GET":
-        form = QuestionForm()
+        form = SignUpForm()
     if request.method == "POST":
-        form = QuestionForm(data=request.POST)
-        if form.is_valid():
-            profile = Profile.objects.get(id=request.user.id)
-            question = form.save(profile)
-            return redirect(f"../question/{question.id}")
+        form = SignUpForm(data=request.POST)
+        if form.is_valid():  # add check existing
+            profile = form.save()
+            auth.login(request, profile.user)
+            return redirect("home")
 
-    content = {
-        "active_users": top_users,
-        "side_panel_tags": side_panel_tags,
-        "popular_tags": Tag.objects.top_tags(10),
+    context = {
+        "best_memb_list": top_users,
+        "tags_list": Tag.objects.top_tags(10),
         "form": form
     }
-
-    return render(request, "ask.html", content)
+    return render(request, "signup.html", context)
 
 
 def login(request):
     next = request.GET.get("continue")
-
     if not next:
-        next = "index"
+        next = "home"
 
     if request.user.is_authenticated:
         return redirect(next)
@@ -204,7 +164,7 @@ def login(request):
 
                 next_url = cache.get('continue')
                 if not next_url:
-                    next_url = "index"
+                    next_url = "home"
 
                 cache.delete('continue')
                 return redirect(next_url)
@@ -213,44 +173,12 @@ def login(request):
                 form.add_error('username', "")
                 form.add_error('password', "")
 
-    top_tags = Tag.objects.top_tags(10)
-    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
-    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
-    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
-    side_panel_tags = [first_row, second_row, third_row]
-    content = {
-        "active_users": top_users,
-        "side_panel_tags": side_panel_tags,
-        "popular_tags": Tag.objects.top_tags(10),
+    context = {
+        "best_memb_list": top_users,
+        "tags_list": Tag.objects.top_tags(10),
         "form": form
     }
-    return render(request, "login.html", content)
-
-
-def registration(request):
-    if request.user.is_authenticated:
-        return redirect("index")
-    if request.method == "GET":
-        form = SignUpForm()
-    if request.method == "POST":
-        form = SignUpForm(data=request.POST)
-        if form.is_valid():
-            profile = form.save()
-            auth.login(request, profile.user)
-            return redirect("index")
-
-    top_tags = Tag.objects.top_tags(10)
-    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
-    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
-    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
-    side_panel_tags = [first_row, second_row, third_row]
-    content = {
-        "active_users": top_users,
-        "side_panel_tags": side_panel_tags,
-        "popular_tags": Tag.objects.top_tags(10),
-        "auth": False
-    }
-    return render(request, "registration.html", content)
+    return render(request, "login.html", context)
 
 
 @login_required(login_url="login", redirect_field_name="continue")
@@ -260,24 +188,20 @@ def settings(request):
         form = SettingsForm(instance=user)
     if request.method == "POST":
         form = SettingsForm(request.POST, instance=user)
-        if form.is_valid():
+        if form.is_valid():  # add check existing
             form.save()
             return redirect("settings")
 
-    top_tags = Tag.objects.top_tags(10)
-    first_row = {"1": top_tags[0], "2": top_tags[1], "3": top_tags[2]}
-    second_row = {"1": top_tags[3], "2": top_tags[4], "3": top_tags[5]}
-    third_row = {"1": top_tags[6], "2": top_tags[7], "3": top_tags[8]}
-    side_panel_tags = [first_row, second_row, third_row]
-    content = {
-        "active_users": top_users,
-        "side_panel_tags": side_panel_tags,
-        "popular_tags": Tag.objects.top_tags(10),
+    context = {
+        "best_memb_list": top_users,
+        "tags_list": Tag.objects.top_tags(10),
         "form": form
     }
-    return render(request, "settings.html", content)
+
+    return render(request, "settings.html", context)
 
 
+@login_required(login_url="login", redirect_field_name="continue")
 def logout(request):
     auth.logout(request)
     return redirect(request.META.get('HTTP_REFERER'))
