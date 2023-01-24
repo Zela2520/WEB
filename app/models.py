@@ -1,4 +1,3 @@
-
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Count
@@ -10,13 +9,7 @@ class ProfileManager(models.Manager):
 
 
 class Profile(models.Model):
-    avatar = models.ImageField(null=True, blank=True, upload_to='uploads/avatars/',
-                               default='uploads/avatars/bob.png')
-
-    counter_questions = models.IntegerField(default=0)
-    counter_answers = models.IntegerField(default=0)
-    counter_resolved_answers = models.IntegerField(default=0)
-
+    avatar = models.ImageField(null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=False)
     objects = ProfileManager()
 
@@ -44,9 +37,6 @@ class QuestionManager(models.Manager):
     def new(self):
         return self.count_answers().order_by('-publish_date')
 
-    def old(self):
-        return self.count_answers().order_by('publish_date')
-
     def hot(self):
         return self.count_answers().order_by('-rating')
 
@@ -66,10 +56,6 @@ class Question(models.Model):
 
     rating = models.IntegerField(default=0)
 
-    counter_votes = models.IntegerField(default=0)
-    counter_answers = models.IntegerField(default=0)
-    counter_views = models.IntegerField(default=0)
-
     def __str__(self):
         return self.title
 
@@ -86,7 +72,7 @@ class Answer(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     title = models.CharField(max_length=256)
     text = models.TextField()
-    is_correct = models.BooleanField(default=False)
+    correct = models.BooleanField(default=False)
     publish_date = models.DateTimeField(auto_now_add=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
