@@ -148,7 +148,8 @@ def signup(request):
 
 def login(request):
     next = request.GET.get("continue")
-    if not next:
+    print(next)
+    if not next or next[0] != '/':
         next = "home"
 
     if request.user.is_authenticated:
