@@ -10,8 +10,8 @@ class ProfileManager(models.Manager):
 
 
 class Profile(models.Model):
-    avatar = models.ImageField(null=True, blank=True, upload_to='uploads/avatars/',
-                               default='uploads/avatars/bob.png')
+    avatar = models.ImageField(null=True, blank=True, upload_to='media/avatars/',
+                               default='media/avatars/dwight.jpeg')
 
     counter_questions = models.IntegerField(default=0)
     counter_answers = models.IntegerField(default=0)
